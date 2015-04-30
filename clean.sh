@@ -12,7 +12,7 @@ echo -e "${infoColor}Cleaning ccaches${noColor}"
 rm -rf ~/.ccache/
 
 # Garbage collects all your git repos
-gits="$(find | grep '\.git$')"
+gits="$(find -type d -name '*.git')"
 home="$(pwd)"
 while read -r git; do
     echo -e "${infoColor}Cleaning ${successColor}$git${noColor}"
@@ -21,7 +21,7 @@ done <<< "$gits"
 
 # Garbage collects all your compiled java code
 # This can get really intense when you take 162
-classes="$(find | grep '\.class$')"
+classes="$(find -type f -name '*.class')"
 while read -r class; do
     if [ -z "$class" ]
     then
